@@ -17,7 +17,10 @@ export default function RootLayout({
         <div className="dark:bg-nft-dark  min-h-screen   ">
           <body>
           <Navbar />
+            <div className="pt-65">
+
             {children}
+            </div>
           </body>
         </div>
         <Script
