@@ -24,7 +24,7 @@ export default function RootLayout({
           src="https://kit.fontawesome.com/7842ee7b5d.js"
           crossOrigin="anonymous"
         />
-        <h1>footer</h1>
+        <Footer/>
       </ThemeProvider>
     </html>
   );
