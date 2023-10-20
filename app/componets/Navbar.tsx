@@ -68,7 +68,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   return (
-    <nav className="flexBetween w-full fixed bg-white p-4 flex-row border-b dark:bg-nft-dark dark:border-nft-white border-nft-gray-1 ">
+    <nav className="flexBetween w-full fixed bg-white p-4 flex-row border-b dark:bg-nft-dark dark:border-nft-white border-nft-gray-1  z-10">
       <div className=" flex flex-1 flex-row justify-start">
         <Link href="/">
           <div
