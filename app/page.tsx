@@ -1,5 +1,5 @@
 "use client";
-import { Banner, CreatorCard } from "./componets";
+import { Banner, CreatorCard, NftCard } from "./componets";
 import { useState, useEffect, useRef } from "react";
 import images from "./assets";
 import { makeId } from "../utils/makeId";
@@ -95,6 +95,28 @@ const Home = () => {
                 </>
               )}
             </div>
+          </div>
+        </div>
+        <div className="mt-10 ">
+          <div className="flexBetween mx-4 xs:mx-0 minlg:mx-8 sm:flex-col sm:items-start ">
+            <h1 className=" flex-1 font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl text-semibold  sm:mb-4  ">
+              Hot Bids
+            </h1>
+            <div> Search Bars</div>
+          </div>
+          <div className="mt-3 w-full flex flex-wrap justify-start md:justify-center">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+              <NftCard
+                key={`nft-${i}`}
+                nft={{
+                  i,
+                  name: `Nifty Nft ${i}`,
+                  seller: `0x${makeId(3)}...${makeId(4)}`,
+                  owner: `0x${makeId(3)}...${makeId(4)}`,
+                  desc: "Cool Nft On Sale",
+                }}
+              />
+            ))}
           </div>
         </div>
       </div>
