@@ -99,7 +99,7 @@ const Home = () => {
         </div>
         <div className="mt-10 ">
           <div className="flexBetween mx-4 xs:mx-0 minlg:mx-8 sm:flex-col sm:items-start ">
-            <h1 className=" flex-1 font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl text-semibold  sm:mb-4  ">
+            <h1 className=" flex-1 before:first:font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl text-semibold  sm:mb-4  ">
               Hot Bids
             </h1>
             <div> Search Bars</div>
@@ -111,9 +111,10 @@ const Home = () => {
                 nft={{
                   i,
                   name: `Nifty Nft ${i}`,
+                  price:(10-i *0.4343).toFixed(2),
                   seller: `0x${makeId(3)}...${makeId(4)}`,
                   owner: `0x${makeId(3)}...${makeId(4)}`,
-                  desc: "Cool Nft On Sale",
+                  description: "Cool Nft On Sale",
                 }}
               />
             ))}
