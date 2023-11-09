@@ -54,13 +54,13 @@ owner = payable (msg.sender);
     }
     
 function createToken(string memory tokenURI , uint256 price) public payable returns (uint){
-_tokenIds.increment();
+    _tokenIds.increment();
 
-uint newTokenId=_tokenIds.current();
+    uint newTokenId=_tokenIds.current();
 
 
-_mint(msg.sender , newTokenId);
-_setTokenURI(newTokenId , _tokenURI);
+    _mint(msg.sender , newTokenId);
+    _setTokenURI(newTokenId , _tokenURI);
     createMarketItem(newTokenId , price);
 
     return newTokenId;
@@ -82,6 +82,33 @@ _setTokenURI(newTokenId , _tokenURI);
         emit MarketItemCreated(tokenId , msg.sender , adress(this) , price , false);
 
     }
+        function resellToken(uint256 tokenId , uint256 price) public payable {
+
+            require(idToMarketItem[tokenId].owner==msg.sender ,"Only Item Owner Can Perform This Operation" );
+            require(msg.value ==listingPrice , "Price Must Be Equal To Listing Price");
+            idToMarketItem[tokenId].sold = false;
+            idToMarketItem[tokenId].price = price;
+            idToMarketItem[tokenId].seller = payable(msg.sencer);
+            idToMarketItem[tokenId].owner = payable(address(this));
+            _itemsSold.decrement();
+            _transfer(msg.sender , address(this),tokenId);
+
+        }
+        function createMarketSale(uint256 tokenId) public payable {
+                uint pruce = idToMarketItem[tokenId].price;
+                require(msg.value==price , "Please Submit The Asking Price In Order To Complete The Purchase");
+
+                idToMarketItem[tokenId].owner = payable(msg.seller);                
+                idToMarketItem[tokenId].sold = ture;                
+                idToMarketItem[tokenId].seller =payable(address(0));
+                _itemsSold.increment();
+                _transfer(address(this),msg.sender , tokenId);
+                payable(owner).trasfer(listingPrice);
+
+                payable(idToMarketItem[tokenId].seller).transfer(msg.value);                
+
+        }
+
 
 }
 
