@@ -23,7 +23,7 @@ countract NFTMarketplace is ERC721URIStorage {
     struct MarketItem {
         uint256 tokenId;
         address payable seller;
-        addres payable owner;
+        address payable owner;
         uint256 price;
         bool sold;
 
@@ -53,7 +53,37 @@ owner = payable (msg.sender);
         return listingPrice;
     }
     
+function createToken(string memory tokenURI , uint256 price) public payable returns (uint){
+_tokenIds.increment();
+
+uint newTokenId=_tokenIds.current();
+
+
+_mint(msg.sender , newTokenId);
+_setTokenURI(newTokenId , _tokenURI);
+    createMarketItem(newTokenId , price);
+
+    return newTokenId;
+}
+// Create Market Item
+    function createMarketItem(uint256 tokenId , uint256 price) private {
+            require(price>0 , "Price Must Be Atleast One")
+            require(msg.value==listingPrice ,  , "Price Must Be Equal To Listing Price")
+        idToMarketItem [tokenId] = MarketItem(
+            tokenId , 
+            payable(msg.sender),
+            payable(adress(this)),
+            price,
+            false,
+
+        );
+        _transfer( msg.sender , address(this) , tokenId);
+
+        emit MarketItemCreated(tokenId , msg.sender , adress(this) , price , false);
+
+    }
 
 }
+
 
 
