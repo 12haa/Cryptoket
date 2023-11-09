@@ -11,6 +11,11 @@ import images from "../assets";
 const CreateNft = () => {
   const { theme } = useTheme();
   const [fileUrl, setFileUrl] = useState(null);
+  const [formInput, setFormInput] = useState({
+    price: "",
+    name: "",
+    description: "",
+  });
   const onDrop = useCallback(() => {
     //Upload image to blockchain
   }, []);
@@ -38,6 +43,7 @@ const CreateNft = () => {
 
     [isDragAccept, isDragActive, isDragReject]
   );
+  console.log(formInput, "form input");
   return (
     <div className="flex justify-center sm:px-4 p-12 ">
       <div className="w-3/5 md:w-full ">
@@ -84,25 +90,33 @@ const CreateNft = () => {
           inputType="input"
           title="Name"
           placeholder="NFT Name"
-          handleClick={() => {}}
+          handleClick={(e: any) =>
+            setFormInput({ ...formInput, name: e.target.value })
+          }
         />
         <Input
           inputType="textarea"
           title="Description"
           placeholder="NFT Description"
-          handleClick={() => {}}
+          handleClick={(e: any) =>
+            setFormInput({ ...formInput, description: e.target.value })
+          }
         />
         <Input
           inputType="number"
           title="Price"
           placeholder="NFT Price"
-          handleClick={() => {}}
+          handleClick={(e: any) =>
+            setFormInput({ ...formInput, price: e.target.value })
+          }
         />
         <div className="mt-7 w-full flex justify-end ">
           <Button
             btnName="Create NFT"
             classStyles="rounded-xl"
-            handleClick={() => {}}
+            handleClick={(e: any) =>
+              setFormInput({ ...formInput, price: e.target.value })
+            }
           />
         </div>
       </div>
